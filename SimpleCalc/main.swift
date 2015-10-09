@@ -20,9 +20,9 @@ print("Welcome to SimplyCalc")
 print("Enter any expression separated by returns:")
 
 
-var count = 0   //counter
+var count = 0.0   //counter
 
-var total = 0   //running total
+var total = 0.0   //running total
 
 var arrayNums = [String]()
 
@@ -43,37 +43,46 @@ switch nextInput {
     case "+", "-", "*", "/":
         if nextInput == "+" {
             secondVar = String(input())
-            total = Int(firstVar)! + Int(secondVar)!
+            total = Double(firstVar)! + Double(secondVar)!
         } else if nextInput == "-" {
             secondVar = String(input())
-            total = Int(firstVar)! - Int(secondVar)!
+            total = Double(firstVar)! - Double(secondVar)!
         } else if nextInput == "*" {
             secondVar = String(input())
-            total = Int(firstVar)! * Int(secondVar)!
+            total = Double(firstVar)! * Double(secondVar)!
         } else if nextInput == "/" {
             secondVar = String(input())
-            total = Int(firstVar)! / Int(secondVar)!
+            total = Double(firstVar)! / Double(secondVar)!
         }
         print("Result: \(total)")
     
     case "fact":
-        total = Int(firstVar)!
-        for var index = Int(firstVar)! - 1; index > 0; index-- {
+        if count > 1 {
+            print("Factorial can only have one input")
+        }
+        total = Double(firstVar)!
+        for var index = Double(firstVar)! - 1; index > 0; index-- {
             total = total * index
         }
         print("Result: \(total)")
+    
     default:
         while isStillTyping{
             if nextInput == "avg" {
                 for value in arrayNums {
-                    total += Int(value)!
+                    total += Double(value)!
                 }
-                total = total/count
+                total = Double(total/count)
                 print("Results: \(total)")
                 break
             }
             if nextInput == "count" {
                 print("Results: \(count)")
+                break
+            }
+            
+            if nextInput == "fact" && count > 1{
+                print("Factorials can only have one input.")
                 break
             }
             
@@ -83,6 +92,8 @@ switch nextInput {
             
         }
         break
-}
+ }
+    
+
 
 
